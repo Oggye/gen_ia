@@ -7,11 +7,8 @@ df = pd.read_csv('./sessions_dataset_320.csv')
 # Aperçu des 5 premières lignes
 print(df.head())
 
-# Affichage de la taille, les types et les valeurs manquantes
+# Affichage de la taille
 print(f"\nTaille du dataset: {df.shape[0]} lignes, {df.shape[1]} colonnes\n")
-
-# Vérification des valeurs manquantes
-print("Les valeurs manquantes au total sont de :", df.isnull().sum().sum(), "\n")
 
 # Affichage des types
 print("Les types du dataset:")
@@ -19,6 +16,13 @@ print(df.dtypes, "\n")
 
 # Vérification des doublons
 print(f"Doublons complets: {df.duplicated().sum()}\n")
+# Supprimer les doublons
+df = df.drop_duplicates()
+
+# Vérification des valeurs manquantes
+print("Les valeurs manquantes au total sont de :", df.isnull().sum().sum(), "\n")
+# Supprimer les lignes avec valeurs manquantes
+df = df.dropna()
 
 # Convertir date en datetime
 df['date'] = pd.to_datetime(df['date'])
@@ -27,11 +31,10 @@ df['date'] = pd.to_datetime(df['date'])
 print("\nLes types du dataset après nettoyage:")
 print(df.dtypes)
 
-print(f"Dataset final: {df.shape[0]} lignes, {df.shape[1]} colonnes")
-
-# # Sauvegarde des données nettoyées
-# df.to_csv('./sessions_dataset_clean.csv', index=False)
-# print("\n Données nettoyées sauvegardées dans 'sessions_dataset_clean.csv'")
+#Vérification finale
+print(f"\nDataset nettoyé final: {df.shape[0]} lignes, {df.shape[1]} colonnes")
+print(f"Doublons restants: {df.duplicated().sum()}")
+print(f"Valeurs manquantes restantes: {df.isnull().sum().sum()}")
 
 # Moyenne de la durée par service
 print(df.groupby('service')[['duree_minutes', 'note_praticien', 'qualite_score']].mean())
