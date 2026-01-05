@@ -12,8 +12,8 @@ except Exception:
 
 st.set_page_config(page_title="Dashaalia", layout="wide", initial_sidebar_state="expanded")
 
-# --- Load external CSS ---
-def load_css(file_path: str = "style.css"):
+# --- Chargement du CSS externe ---
+def load_css(file_path: str = "../assets/style.css"):
     try:
         with open(file_path, "r") as f:
             css = f.read()
@@ -23,9 +23,9 @@ def load_css(file_path: str = "style.css"):
 
 load_css()
 
-# --- Helpers ---
+# --- Fonctions utilitaires ---
 @st.cache_data
-def load_data(path: str = "./sessions_dataset_320.csv") -> pd.DataFrame:
+def load_data(path: str = "../Data/sessions_dataset_320.csv") -> pd.DataFrame:
     try:
         df = pd.read_csv(path)
     except FileNotFoundError:
@@ -100,7 +100,7 @@ def filter_data(df: pd.DataFrame,
     return d
 
 
-# --- Helpers d'affichage ---
+# --- Fonctions d'affichage ---
 def format_for_display(df: pd.DataFrame, date_cols=('date',)) -> pd.DataFrame:
     """Retourne une copie du DataFrame avec les colonnes date tronquées à la date seulement (pas d'heure)."""
     d2 = df.copy()
@@ -116,7 +116,7 @@ def convert_df_to_csv(df):
     return df2.to_csv(index=False).encode('utf-8')
 
 
-# --- Main ---
+# --- Bloc principal ---
 
 # Header stylisé
 st.markdown("""
@@ -129,7 +129,7 @@ st.markdown("""
 # Sidebar avec header stylisé
 st.sidebar.markdown('<div class="sidebar-header">🎛️ Panneau de Filtres</div>', unsafe_allow_html=True)
 
-# Load data
+# Chargement des données
 with st.spinner("⏳ Chargement des données..."):
     df = load_data()
 
@@ -137,7 +137,7 @@ if df.empty:
     st.warning("⚠️ Le dataset est vide ou manquant. Placez `sessions_dataset_320.csv` à la racine du projet.")
     st.stop()
 
-# --- Sidebar filters ---
+# --- Filtres de la barre latérale ---
 st.sidebar.markdown("### 📅 Période")
 min_date = df["date"].min().date()
 max_date = df["date"].max().date()
@@ -182,7 +182,7 @@ if end > today:
     st.sidebar.warning(f"⚠️ Date de fin ramenée à aujourd'hui.")
     end = today
 
-# Update widget if corrections applied to reflect corrected dates
+# Met à jour le widget si des corrections de dates sont appliquées
 try:
     if inverted or clamped:
         current = st.session_state.get("date_range", None)
@@ -221,7 +221,7 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("### 🔍 Recherche")
 notes_query = st.sidebar.text_input("Recherche dans les notes praticiens", placeholder="Entrez un mot-clé...")
 
-# Apply filters
+# Appliquer les filtres
 filtered = filter_data(
     df,
     date_range=(start, end),
@@ -233,7 +233,7 @@ filtered = filter_data(
     notes_query=notes_query
 )
 
-# --- KPIs ---
+# --- Indicateurs clés (KPIs) ---
 st.markdown('<div class="section-header">📈 Indicateurs Clés</div>', unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
@@ -418,7 +418,7 @@ st.download_button(
 
 st.markdown('<hr class="custom-divider">', unsafe_allow_html=True)
 
-# Footer
+# Pied de page
 st.markdown("""
 <div style='text-align: center; color: #666; padding: 2rem 0; font-size: 0.9rem;'>
     <p>🚀 Interface générée avec Streamlit</p>

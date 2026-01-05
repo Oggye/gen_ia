@@ -2,7 +2,7 @@
 import pandas as pd
 
 # Chargement des données
-df = pd.read_csv('./sessions_dataset_320.csv')
+df = pd.read_csv('./Data/sessions_dataset_320.csv')
 
 # Aperçu des 5 premières lignes
 print(df.head())

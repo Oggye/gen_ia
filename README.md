@@ -1,4 +1,4 @@
-# gen_ia
+# gen_ia Mariam Marwo - Nafissa Adja - Orlane Emmanuelle - B3 DEV IA 
 
 **Dashboard Streamlit** pour analyser les sessions médicales (top langues, évolution des sessions, durée moyenne, répartition par service, indicateurs qualité, interactions patient/praticien, notes praticiens).
 
