@@ -57,12 +57,6 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 
 ---
 
-## 💡 Conseils
-- Pour que les notes textuelles s'affichent, ajoutez une colonne contenant du texte et contenant `note` dans son nom (ex: `note_praticien_text`).
-- Vous pouvez modifier/étendre `app.py` pour ajouter d'autres KPI ou filtres selon vos besoins.
-
----
-
 ## 📬 Contact
 Pour toute question sur les données ou pour ajouter des métriques, contactez l'équipe données.
 
