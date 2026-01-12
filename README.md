@@ -54,9 +54,3 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 - Visualisations : top langues, évolution temporelle (Jour/Semaine/Mois), durée moyenne par service, répartition par service, distribution qualité, interactions (boxplot)
 - Section `Notes praticiens` : tableau des colonnes numériques contenant `note` (session_id, service, date)
 - Export : téléchargement CSV des données filtrées (dates exportées au format date seulement)
-
----
-
-## 📬 Contact
-Pour toute question sur les données ou pour ajouter des métriques, contactez l'équipe données.
-
